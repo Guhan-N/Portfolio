@@ -124,7 +124,16 @@
     worldGroup.add(sculptureGroup);
 
     // Initial position on screen (prominently right-center of the Hero section)
-    sculptureGroup.position.set(2.2, 0.2, 0);
+    const isMobileInit = window.innerWidth <= 768;
+    const isTabletInit = window.innerWidth <= 1024;
+    sculptureGroup.position.set(
+      isMobileInit ? 0.35 : (isTabletInit ? 1.6 : 2.2),
+      isMobileInit ? -0.2 : 0.2,
+      isMobileInit ? -0.5 : 0
+    );
+    if (isMobileInit) {
+      sculptureGroup.scale.set(0.85, 0.85, 0.85);
+    }
 
     // Inner Spin Group: Continues free flow, rotation, and organic floating across all sections
     cubeSpinGroup = new THREE.Group();
@@ -191,6 +200,9 @@
       threeCamera.aspect = newW / newH;
       threeCamera.updateProjectionMatrix();
       threeRenderer.setSize(newW, newH);
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
     });
 
     // 9. Master Animation RAF Loop
@@ -229,6 +241,40 @@
   }
 
   function setup3DScrollytelling() {
+    const isMobile = window.innerWidth <= 768;
+    const isTablet = window.innerWidth <= 1024;
+
+    const aboutPos = {
+      x: isMobile ? 0.35 : (isTablet ? 1.65 : 2.15),
+      y: isMobile ? -0.2 : 0.05,
+      z: isMobile ? -0.4 : 0.15,
+      scale: isMobile ? 0.88 : 1.18,
+    };
+    const projectsPos = {
+      x: isMobile ? -0.35 : -2.2,
+      y: isMobile ? 0.45 : 0.65,
+      z: isMobile ? -1.4 : -1.8,
+      scale: isMobile ? 0.75 : 0.95,
+    };
+    const portalPos = {
+      x: isMobile ? 0.25 : 1.8,
+      y: -0.1,
+      z: 0.4,
+      scale: isMobile ? 0.85 : 1.15,
+    };
+    const reelPos = {
+      x: isMobile ? 0.35 : 2.2,
+      y: 0.1,
+      z: 0.35,
+      scale: isMobile ? 0.88 : 1.18,
+    };
+    const matrixPos = {
+      x: isMobile ? 0.3 : 1.7,
+      y: -0.1,
+      z: 0.5,
+      scale: isMobile ? 0.85 : 1.12,
+    };
+
     // Master timeline scrubbing the 3D sculpture's transform across the full page!
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -239,78 +285,85 @@
       },
     });
 
-    // Phase 1: From Hero -> Into About / Manifesto
-    // Glides into background slightly to the right, framing the manifesto text cleanly in foreground
+    // Phase 1: From Hero -> Throughout About Me Section
+    // Keeps the 3D Infinity Cube prominently and steadily visible on the right, framing the manifesto text cleanly in foreground
     tl.to(sculptureGroup.position, {
-      x: 1.1,
-      y: -0.2,
-      z: -0.4,
+      x: aboutPos.x,
+      y: aboutPos.y,
+      z: aboutPos.z,
+      duration: 0.20,
       ease: 'power1.inOut',
     }, 0)
       .to(sculptureGroup.scale, {
-        x: 1.12,
-        y: 1.12,
-        z: 1.12,
+        x: aboutPos.scale,
+        y: aboutPos.scale,
+        z: aboutPos.scale,
+        duration: 0.20,
         ease: 'power1.inOut',
       }, 0);
 
-    // Phase 2: Into Stacking Cards (Featured Work)
-    // Moves to deep background on the left, allowing project cards to stack in foreground
+    // Phase 2: From About Me -> Into Stacking Cards (Featured Work)
+    // Only shifts into the background when entering the Projects section!
     tl.to(sculptureGroup.position, {
-      x: -2.3,
-      y: 0.7,
-      z: -2.0,
+      x: projectsPos.x,
+      y: projectsPos.y,
+      z: projectsPos.z,
+      duration: 0.25,
       ease: 'power1.inOut',
-    }, 0.25)
+    }, 0.22)
       .to(sculptureGroup.scale, {
-        x: 0.92,
-        y: 0.92,
-        z: 0.92,
+        x: projectsPos.scale,
+        y: projectsPos.scale,
+        z: projectsPos.scale,
+        duration: 0.25,
         ease: 'power1.inOut',
-      }, 0.25);
+      }, 0.22);
 
     // Phase 3: Expanding White Portal Transition (The Shift into Light Mode)
-    // Glides forward across to right-center, turning into pure white porcelain
     tl.to(sculptureGroup.position, {
-      x: 1.8,
-      y: -0.1,
-      z: 0.4,
+      x: portalPos.x,
+      y: portalPos.y,
+      z: portalPos.z,
+      duration: 0.20,
       ease: 'power1.inOut',
     }, 0.48)
       .to(sculptureGroup.scale, {
-        x: 1.15,
-        y: 1.15,
-        z: 1.15,
+        x: portalPos.scale,
+        y: portalPos.scale,
+        z: portalPos.scale,
+        duration: 0.20,
         ease: 'power1.inOut',
       }, 0.48);
 
     // Phase 4: Academics & Experience Pinned Horizontal Reel on the White Canvas
-    // Floats freely on the open right side while the cards reel horizontally on the left
     tl.to(sculptureGroup.position, {
-      x: 2.3,
-      y: 0.1,
-      z: 0.4,
+      x: reelPos.x,
+      y: reelPos.y,
+      z: reelPos.z,
+      duration: 0.20,
       ease: 'power1.inOut',
     }, 0.65)
       .to(sculptureGroup.scale, {
-        x: 1.20,
-        y: 1.20,
-        z: 1.20,
+        x: reelPos.scale,
+        y: reelPos.scale,
+        z: reelPos.scale,
+        duration: 0.20,
         ease: 'power1.inOut',
       }, 0.65);
 
     // Phase 5: Technical Matrix & Light Finale Contact
-    // Settles gracefully on the right alongside the skills matrix and above contact CTA
     tl.to(sculptureGroup.position, {
-      x: 1.7,
-      y: -0.1,
-      z: 0.6,
+      x: matrixPos.x,
+      y: matrixPos.y,
+      z: matrixPos.z,
+      duration: 0.20,
       ease: 'power1.inOut',
     }, 0.88)
       .to(sculptureGroup.scale, {
-        x: 1.12,
-        y: 1.12,
-        z: 1.12,
+        x: matrixPos.scale,
+        y: matrixPos.scale,
+        z: matrixPos.scale,
+        duration: 0.20,
         ease: 'power1.inOut',
       }, 0.88);
   }
