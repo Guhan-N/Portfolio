@@ -391,7 +391,7 @@ body.light-theme .noise-overlay {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 8vw, 8.5rem);
+  font-size: clamp(2.5rem, 7vw, 7.5rem);
   font-weight: 700;
   line-height: 0.92;
   letter-spacing: -0.04em;
