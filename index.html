@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GUHAN N // DATABASE & SYSTEMS ENGINEER</title>
+  <meta name="description"
+    content="Portfolio of Guhan N – B.Tech Information Technology, Database Engineer (SQL, MySQL, MongoDB), IoT Developer & Systems Technologist. Powered by Lenis smooth scrolling." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Lenis, GSAP, Three.js & GLTFLoader CDN -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="infinity_cube_base64.js"></script>
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- FIXED FULL-SCREEN 3D SCROLLYTELLING CANVAS (Lenis.dev Style) -->
+  <div class="fixed-canvas-container" id="fixedCanvasContainer">
+    <canvas id="bg3dCanvas"></canvas>
+    <div class="canvas-horizon-glow"></div>
+  </div>
+
+  <!-- Ambient Grid Background -->
+  <div class="bg-grid"></div>
+  <div class="noise-overlay"></div>
+
+  <!-- FIXED HUD TOP BAR -->
+  <header class="hud-header">
+    <div class="hud-brand">
+      <span class="hud-indicator"></span>
+      <span class="hud-title">GUHAN.N</span>
+    </div>
+
+    <!-- Live Telemetry -->
+    <div class="hud-telemetry">
+      <div class="telemetry-item">
+        <span class="label">STATUS</span>
+        <span class="val text-green">OPEN_FOR_OPPORTUNITIES</span>
+      </div>
+      <div class="telemetry-item">
+        <span class="label">CGPA</span>
+        <span class="val text-accent">8.34 / 10</span>
+      </div>
+    </div>
+
+    <nav class="hud-nav">
+      <a href="#about" class="hud-link magnetic">/ABOUT</a>
+      <a href="#projects" class="hud-link magnetic">/PROJECTS</a>
+      <a href="#experience" class="hud-link magnetic">/EXPERIENCE</a>
+      <a href="#skills" class="hud-link magnetic">/SKILLS</a>
+      <a href="#contact" class="hud-link magnetic">/CONTACT</a>
+    </nav>
+  </header>
+
+  <!-- SLEEK 3D RENDER MODE TOGGLE (Floating Pill) -->
+  <button class="floating-3d-btn magnetic" id="toggleWireframeBtn" aria-label="Toggle 3D visual mode" title="Cycle 3D Render Mode: Hybrid / Wireframe / Solid">
+    <span class="btn-dot"></span>
+    <span class="btn-label" id="toggleWireframeText">3D: HYBRID</span>
+  </button>
+
+  <!-- MAIN SCROLL CONTAINER -->
+  <main class="viewport">
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-center-content">
+        <h1 class="hero-title">
+          <span class="hero-line">GUHAN N</span>
+          <span class="hero-line outline">SOFTWARE &amp;</span>
+          <span class="hero-line text-accent">DATABASE DEVELOPER</span>
+        </h1>
+
+        <div class="hero-subgrid">
+          <p class="hero-desc">
+            Information Technology undergraduate at Manakula Vinayagar Institute of Technology with a CGPA of <b>8.34/10</b>.
+            Interested in software development, database management, backend technologies, API integration and system development.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="action-btn magnetic">EXPLORE PROJECTS ↓</a>
+            <a href="Guhan_N_Resume.pdf" download="Guhan_N_Resume.pdf" class="action-btn outline magnetic" title="Download Guhan's Official Resume PDF">DOWNLOAD RESUME 📄</a>
+            <a href="#contact" class="action-btn outline magnetic">CONTACT ME ↗</a>
+            <a href="https://github.com/Guhan-N" target="_blank" rel="noreferrer" class="action-btn outline magnetic">GITHUB ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="hero-telemetry-badge">
+          <span class="pulse-dot"></span>
+          <span class="mono-tag" id="canvas3dMeta">3D OBJECT ENGINE: SCROLL TO FLOW THROUGH SECTIONS</span>
+        </div>
+        <div class="scroll-prompt">
+          <div class="mouse-icon">
+            <div class="wheel"></div>
+          </div>
+          <span class="mono-tag">SCROLL DOWN TO ORBIT &amp; FLY THROUGH 3D SPACE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT ME SECTION -->
+    <section class="scrub-section" id="about">
+      <div class="section-badge">[ 01 // ABOUT ME ]</div>
+      <h2 class="about-heading">ENGINEERING RESILIENT &amp; SCALABLE SOLUTIONS</h2>
+      <p class="scrub-text" id="scrubText">
+        I am an Information Technology undergraduate passionate about software development, database management and building practical technology solutions. I have worked on projects involving web applications, API integration, database platforms, Android development and IoT-based systems. I enjoy exploring new technologies, solving practical problems and continuously improving my development skills.
+      </p>
+      <div class="about-highlights-grid">
+        <div class="highlight-item">
+          <span class="hl-label">EDUCATION</span>
+          <span class="hl-value">B.Tech IT (2023–2027)</span>
+        </div>
+        <div class="highlight-item">
+          <span class="hl-label">ACADEMIC STANDING</span>
+          <span class="hl-value text-accent">CGPA 8.34 / 10.0</span>
+        </div>
+        <div class="highlight-item">
+          <span class="hl-label">CORE DOMAINS</span>
+          <span class="hl-value">Databases, Backend &amp; IoT</span>
+        </div>
+        <div class="highlight-item">
+          <span class="hl-label">LOCATION</span>
+          <span class="hl-value">Puducherry, India</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. STICKY STACKING CARDS (PROJECTS SHOWCASE) -->
+    <section class="projects-section" id="projects">
+      <div class="projects-header">
+        <div class="section-badge">[ 02 // SELECTED SOFTWARE &amp; SYSTEM PROJECTS ]</div>
+        <h2 class="section-title">ENGINEERING PROJECT SHOWCASE</h2>
+        <p class="section-subtitle">Real-world software systems, mobile platforms, cybersecurity tools, and IoT hardware pipelines.</p>
+      </div>
+
+      <div class="cards-stack-container" id="cardsStack">
+
+        <!-- Card 1: EPICFLIX - Movie Discovery Platform -->
+        <div class="stack-card" data-index="01">
+          <div class="card-inner">
+            <div class="card-meta">
+              <span class="card-num">PROJECT 01 / 04</span>
+              <span class="card-client">WEB APPLICATION // TMDB API INTEGRATION</span>
+              <span class="card-year">PRODUCTION 2024</span>
+            </div>
+            <div class="card-content">
+              <div class="card-header-row">
+                <h3 class="card-title">EPICFLIX</h3>
+                <span class="card-subtitle-badge">MOVIE DISCOVERY PLATFORM</span>
+              </div>
+              
+              <div class="card-block">
+                <span class="block-label">PROJECT OVERVIEW</span>
+                <p class="card-description">
+                  A high-performance responsive movie discovery web platform integrating The Movie Database (TMDB) API for real-time trending titles, multi-criteria filtering, movie trailers, and detailed film analytics.
+                </p>
+              </div>
+
+              <div class="card-grid-details">
+                <div class="detail-box">
+                  <span class="detail-title">PROBLEM SOLVED</span>
+                  <p>Eliminates fragmented movie discovery by unifying dynamic search, trailers, ratings, and localized movie metadata in a single fast, zero-latency interface.</p>
+                </div>
+                <div class="detail-box">
+                  <span class="detail-title">MY CONTRIBUTION</span>
+                  <p>Built responsive frontend architecture, integrated TMDB REST endpoints for real-time dynamic querying, and engineered client-side state caching with LocalStorage for watchlist and viewing history.</p>
+                </div>
+              </div>
+
+              <div class="card-features">
+                <span class="features-label">KEY FEATURES:</span>
+                <div class="feature-pills">
+                  <span class="pill-tag">Movie Discovery &amp; Search</span>
+                  <span class="pill-tag">Dynamic TMDB API Data</span>
+                  <span class="pill-tag">Watchlist Management</span>
+                  <span class="pill-tag">Viewing History</span>
+                  <span class="pill-tag">LocalStorage Persistence</span>
+                  <span class="pill-tag">Responsive UI</span>
+                </div>
+              </div>
+
+              <div class="card-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">TMDB REST API</span>
+                <span class="tag">LocalStorage</span>
+                <span class="tag">Async / Await</span>
+              </div>
+
+              <div class="card-actions">
+                <a href="https://epicflix007.netlify.app/" target="_blank" rel="noreferrer" class="action-btn pill-btn magnetic">LIVE DEMO ↗</a>
+                <a href="https://github.com/Guhan-N/EPICFLIX" target="_blank" rel="noreferrer" class="action-btn outline pill-btn magnetic">GITHUB REPO ↗</a>
+              </div>
+            </div>
+
+            <div class="card-visual visual-epicflix">
+              <div class="visual-badge">LIVE PLATFORM PREVIEW</div>
+              <div class="cinema-preview">
+                <div class="cinema-header">
+                  <span class="cinema-logo">🎬 EPICFLIX</span>
+                  <div class="cinema-search-bar">
+                    <span class="search-icon">🔍</span>
+                    <span class="search-text">Search "Interstellar"...</span>
+                  </div>
+                  <span class="tmdb-pill">TMDB API</span>
+                </div>
+                <div class="cinema-card-feature">
+                  <div class="movie-backdrop">
+                    <div class="movie-rating-badge">★ 8.8 / 10</div>
+                    <div class="movie-meta-overlay">
+                      <h4>INTERSTELLAR (2014)</h4>
+                      <span class="movie-genre">Sci-Fi • Adventure • Drama</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="cinema-footer-status">
+                  <span class="status-indicator-green">● CLIENT-SIDE STORAGE: ACTIVE</span>
+                  <span class="text-accent">WATCHLIST PERSISTENCE: READY</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: SIMPMUSIC - Android Music Application -->
+        <div class="stack-card" data-index="02">
+          <div class="card-inner">
+            <div class="card-meta">
+              <span class="card-num">PROJECT 02 / 04</span>
+              <span class="card-client">ANDROID MOBILE PLATFORM // EXOPLAYER</span>
+              <span class="card-year">NATIVE HYBRID 2025</span>
+            </div>
+            <div class="card-content">
+              <div class="card-header-row">
+                <h3 class="card-title">SIMPMUSIC</h3>
+                <span class="card-subtitle-badge">ANDROID MUSIC APPLICATION</span>
+              </div>
+
+              <div class="card-block">
+                <span class="block-label">PROJECT OVERVIEW</span>
+                <p class="card-description">
+                  A high-fidelity native Android music application engineered with WebView, Capacitor, and native ExoPlayer for seamless background audio streaming, offline song downloading, and lockscreen media notifications.
+                </p>
+              </div>
+
+              <div class="card-grid-details">
+                <div class="detail-box">
+                  <span class="detail-title">PROBLEM SOLVED</span>
+                  <p>Overcomes web browser tab throttling and audio interruptions by bridging a lightweight web-based interface with native Android background audio services and ExoPlayer pipelines.</p>
+                </div>
+                <div class="detail-box">
+                  <span class="detail-title">MY CONTRIBUTION</span>
+                  <p>Architected the hybrid application wrapper, configured native ExoPlayer audio drivers for background media session handling, wired lockscreen notification controls, and designed offline storage persistence.</p>
+                </div>
+              </div>
+
+              <div class="card-features">
+                <span class="features-label">KEY FEATURES:</span>
+                <div class="feature-pills">
+                  <span class="pill-tag">Web-Based Interface</span>
+                  <span class="pill-tag">ExoPlayer Audio Playback</span>
+                  <span class="pill-tag">Background Audio Engine</span>
+                  <span class="pill-tag">Lockscreen Media Controls</span>
+                  <span class="pill-tag">Music Downloading</span>
+                  <span class="pill-tag">Playlist Management</span>
+                </div>
+              </div>
+
+              <div class="card-tags">
+                <span class="tag">Android</span>
+                <span class="tag">WebView</span>
+                <span class="tag">Capacitor</span>
+                <span class="tag">ExoPlayer</span>
+                <span class="tag">Native Plugins</span>
+                <span class="tag">Media Session</span>
+              </div>
+
+              <div class="card-actions">
+                <a href="https://elitestringmusic.netlify.app/" target="_blank" rel="noreferrer" class="action-btn pill-btn magnetic">LIVE DEMO / DOWNLOAD ↗</a>
+                <a href="https://github.com/Guhan-N" target="_blank" rel="noreferrer" class="action-btn outline pill-btn magnetic">GITHUB PROFILE ↗</a>
+              </div>
+            </div>
+
+            <div class="card-visual visual-simpmusic">
+              <div class="visual-badge">ANDROID MEDIA RUNTIME</div>
+              <div class="player-simulation">
+                <div class="phone-music-notch"></div>
+                <div class="player-screen">
+                  <div class="track-artwork">
+                    <span class="disc-spin">🎵</span>
+                    <div class="waveform-bars">
+                      <span class="bar h-40"></span>
+                      <span class="bar h-75"></span>
+                      <span class="bar h-100"></span>
+                      <span class="bar h-60"></span>
+                      <span class="bar h-90"></span>
+                      <span class="bar h-45"></span>
+                    </div>
+                  </div>
+                  <div class="track-info">
+                    <span class="track-title">HIGH-FIDELITY AUDIO STREAM</span>
+                    <span class="track-artist">ExoPlayer Native Audio Engine</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-fill"></div>
+                    <div class="progress-labels">
+                      <span>02:45</span>
+                      <span>04:12</span>
+                    </div>
+                  </div>
+                  <div class="player-controls">
+                    <span class="ctrl-btn">⏮</span>
+                    <span class="ctrl-btn play-btn">⏸</span>
+                    <span class="ctrl-btn">⏭</span>
+                  </div>
+                </div>
+                <div class="player-status-badge">
+                  <span>SERVICE: BACKGROUND_ACTIVE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: CYBERCOUNCIL - Cybersecurity Awareness Platform -->
+        <div class="stack-card" data-index="03">
+          <div class="card-inner">
+            <div class="card-meta">
+              <span class="card-num">PROJECT 03 / 04</span>
+              <span class="card-client">WEB SECURITY // SUPABASE DATABASE INTEGRATION</span>
+              <span class="card-year">OCT – DEC 2025</span>
+            </div>
+            <div class="card-content">
+              <div class="card-header-row">
+                <h3 class="card-title">CYBERCOUNCIL</h3>
+                <span class="card-subtitle-badge">CYBERSECURITY AWARENESS PLATFORM</span>
+              </div>
+
+              <div class="card-block">
+                <span class="block-label">PROJECT OVERVIEW</span>
+                <p class="card-description">
+                  A comprehensive cybersecurity education and diagnostic web platform engineered for real-time threat detection awareness, security hygiene assessments, and interactive defense simulation tools.
+                </p>
+              </div>
+
+              <div class="card-grid-details">
+                <div class="detail-box">
+                  <span class="detail-title">PROBLEM SOLVED</span>
+                  <p>Demystifies cybersecurity threats for students and organizations through interactive tools that analyze password entropy, detect phishing vectors, and evaluate Wi-Fi vulnerability risks.</p>
+                </div>
+                <div class="detail-box">
+                  <span class="detail-title">MY CONTRIBUTION</span>
+                  <p>Engineered Supabase PostgreSQL cloud database integration, user telemetry and assessment logging pipelines, and modular security tool architecture with responsive high-contrast accessibility.</p>
+                </div>
+              </div>
+
+              <div class="card-features">
+                <span class="features-label">KEY FEATURES:</span>
+                <div class="feature-pills">
+                  <span class="pill-tag">Phishing Awareness &amp; Detection</span>
+                  <span class="pill-tag">Password Strength Analysis</span>
+                  <span class="pill-tag">Wi-Fi Security Checking</span>
+                  <span class="pill-tag">Privacy Analysis</span>
+                  <span class="pill-tag">Security Dashboard</span>
+                  <span class="pill-tag">Supabase Database Integration</span>
+                </div>
+              </div>
+
+              <div class="card-tags">
+                <span class="tag">Supabase</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Web Security</span>
+                <span class="tag">Modular Architecture</span>
+                <span class="tag">Data Logging</span>
+              </div>
+
+              <div class="card-actions">
+                <a href="https://cybercouncil.netlify.app/" target="_blank" rel="noreferrer" class="action-btn pill-btn magnetic">LIVE DEMO ↗</a>
+                <a href="https://github.com/Guhan-N" target="_blank" rel="noreferrer" class="action-btn outline pill-btn magnetic">GITHUB PROFILE ↗</a>
+              </div>
+            </div>
+
+            <div class="card-visual visual-cybercouncil">
+              <div class="visual-badge">SECURITY ARCHITECTURE</div>
+              <div class="security-simulation">
+                <div class="shield-container">
+                  <div class="shield-ring"></div>
+                  <span class="shield-glyph">🛡️</span>
+                </div>
+                <div class="security-matrix">
+                  <div class="matrix-item"><span>DATABASE:</span> <b class="text-green">SUPABASE_ONLINE</b></div>
+                  <div class="matrix-item"><span>PASSWORD ENTROPY:</span> <b class="text-green">STRONG (98/100)</b></div>
+                  <div class="matrix-item"><span>WIFI SECURITY:</span> <b>WPA3_VALIDATED</b></div>
+                  <div class="matrix-item"><span>PHISHING AUDIT:</span> <b class="text-green">ZERO_THREATS</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: RFID Student Attendance System -->
+        <div class="stack-card" data-index="04">
+          <div class="card-inner">
+            <div class="card-meta">
+              <span class="card-num">PROJECT 04 / 04</span>
+              <span class="card-client">IOT HARDWARE &amp; CLOUD TELEMETRY</span>
+              <span class="card-year">NOV – DEC 2024</span>
+            </div>
+            <div class="card-content">
+              <div class="card-header-row">
+                <h3 class="card-title">RFID ATTENDANCE</h3>
+                <span class="card-subtitle-badge">IOT HARDWARE &amp; SPREADSHEET SYNC</span>
+              </div>
+
+              <div class="card-block">
+                <span class="block-label">PROJECT OVERVIEW</span>
+                <p class="card-description">
+                  An automated hardware-cloud IoT attendance logging system utilizing an ESP8266 microcontroller and RC522 RFID reader with automated Google Sheets synchronization via Google Apps Script.
+                </p>
+              </div>
+
+              <div class="card-grid-details">
+                <div class="detail-box">
+                  <span class="detail-title">PROBLEM SOLVED</span>
+                  <p>Eliminates manual roll calls, proxy marking, and paper record delays by providing contactless cryptographic RFID card validation and zero-latency cloud spreadsheet updates.</p>
+                </div>
+                <div class="detail-box">
+                  <span class="detail-title">MY CONTRIBUTION</span>
+                  <p>Wrote microcontroller firmware in Embedded C/C++, designed Wi-Fi HTTP communication payloads, and built Google Apps Script endpoints for automated logging and Excel-compatible spreadsheet export.</p>
+                </div>
+              </div>
+
+              <div class="card-features">
+                <span class="features-label">KEY FEATURES:</span>
+                <div class="feature-pills">
+                  <span class="pill-tag">RFID Card Identification</span>
+                  <span class="pill-tag">Automated Attendance Logging</span>
+                  <span class="pill-tag">Wi-Fi HTTP Communication</span>
+                  <span class="pill-tag">Google Sheets Synchronization</span>
+                  <span class="pill-tag">Digital Attendance Records</span>
+                  <span class="pill-tag">Centralized Export</span>
+                </div>
+              </div>
+
+              <div class="card-tags">
+                <span class="tag">ESP8266</span>
+                <span class="tag">RC522 RFID</span>
+                <span class="tag">Embedded C/C++</span>
+                <span class="tag">Wi-Fi HTTP</span>
+                <span class="tag">Google Sheets API</span>
+                <span class="tag">Google Apps Script</span>
+              </div>
+
+              <div class="card-actions">
+                <a href="https://github.com/Guhan-N" target="_blank" rel="noreferrer" class="action-btn pill-btn magnetic">GITHUB REPO ↗</a>
+                <a href="#contact" class="action-btn outline pill-btn magnetic">CONTACT ME ↗</a>
+              </div>
+            </div>
+
+            <div class="card-visual visual-rfid">
+              <div class="visual-badge">HARDWARE TELEMETRY</div>
+              <div class="rfid-simulation">
+                <div class="rfid-sensor">
+                  <span class="rfid-icon">📡</span>
+                  <div class="rfid-pulse"></div>
+                </div>
+                <div class="rfid-data">
+                  <div class="data-row"><span>TAG_UID:</span> <b>0x7A_9F_2C</b></div>
+                  <div class="data-row"><span>VERIFICATION:</span> <b class="text-green">STATUS_200_OK</b></div>
+                  <div class="data-row"><span>CLOUD_SYNC:</span> <b class="text-accent">GOOGLE_SHEETS_ACK</b></div>
+                  <div class="data-row"><span>EXPORT:</span> <b>EXCEL_READY</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. KINETIC INTERSECTION BANNER (The Transition Trigger) -->
+    <section class="kinetic-banner-section">
+      <div class="kinetic-banner-inner">
+        <span class="section-badge">[ 03 // THE SYSTEM SHIFT ]</span>
+        <h2 class="kinetic-giant-text">
+          <span class="k-line">SO WE BUILT</span>
+          <span class="k-line text-accent">DATA SYSTEMS</span>
+          <span class="k-line outline">AS THEY SHOULD BE.</span>
+        </h2>
+        <div class="kinetic-sub-title">ENTER GUHAN.N</div>
+      </div>
+    </section>
+
+    <!-- 4.1 THE EXPANDING WHITE PORTAL TRANSITION (Video 00:03 - 00:05) -->
+    <section class="portal-section" id="portalSection">
+      <div class="portal-card" id="portalCard">
+        <div class="portal-preview-content">
+          <span class="portal-badge">[ 04 // SYSTEM INVERSION ]</span>
+          <h3 class="portal-card-heading">INVERTING THE CORE</h3>
+          <p class="portal-card-sub">TRANSITIONING FROM HARDWARE TELEMETRY TO ACADEMICS & ENTERPRISE EXPERIENCE</p>
+          <div class="portal-expand-indicator">
+            <span>EXPANDING TO WHITE CANVAS</span>
+            <span class="portal-arrow">↓</span>
+          </div>
+        </div>
+
+        <!-- Dynamic White Transition Typography (Reveals inside the full-screen white canvas) -->
+        <div class="portal-white-content" id="portalWhiteContent">
+          <span class="portal-white-badge">[ 04 // INVERTING THE CORE ]</span>
+          <h2 class="portal-white-heading">
+            ACADEMICS &amp;<br>
+            <span class="text-coral">ENTERPRISE EXPERIENCE</span>
+          </h2>
+          <p class="portal-white-sub">
+            Bridging hardware telemetry, database administration, and industrial software engineering.
+          </p>
+          <div class="portal-white-indicator">
+            <span>SCROLL TO EXPLORE CREDENTIAL REEL</span>
+            <span class="portal-arrow">↓</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. LIGHT MODE WORLD (ACADEMICS, EXPERIENCE, SKILLS & FINALE) -->
+    <section class="light-mode-section" id="whiteWorld">
+
+      <!-- 5.1 PINNED HORIZONTAL REEL: ACADEMICS, EXPERIENCE & CERTIFICATIONS (White Theme) -->
+      <div class="light-horizontal-section" id="experience">
+        <div class="light-horizontal-wrapper">
+          <div class="light-horizontal-intro">
+            <span class="light-section-badge">[ 04 // CREDENTIALS &amp; FOUNDATIONS ]</span>
+            <h2 class="light-horizontal-title">EDUCATION, EXPERIENCE &amp;<br>CERTIFICATIONS</h2>
+            <p class="light-horizontal-desc">
+              Formal engineering degree, industrial on-site &amp; virtual internships, and certified professional training. Horizontal reel synchronized directly to vertical scroll momentum.
+            </p>
+            <div class="light-horizontal-indicator">
+              SCROLL DOWN TO EXPLORE REEL →
+            </div>
+          </div>
+
+          <div class="light-horizontal-track" id="horizontalTrack">
+
+            <!-- Card 01: B.Tech Degree (Education) -->
+            <div class="light-lab-card">
+              <div class="card-top-row">
+                <span class="card-category-tag">EDUCATION // 2023–2027</span>
+                <span class="card-index-pill">01</span>
+              </div>
+              <h4 class="card-main-title">B.TECH INFORMATION TECHNOLOGY</h4>
+              <div class="card-org-name">Manakula Vinayagar Institute of Technology, Puducherry</div>
+              <p class="card-body-text">
+                Maintaining a strong academic standing with a CGPA of <b>8.34 / 10.0</b>. Focused on Database Systems,
+                Data Structures, Operating Systems, Computer Networks, and Object-Oriented Design.
+              </p>
+              <div class="card-footer-box metric-box-light">
+                <span class="score-label-light">CURRENT CGPA</span>
+                <span class="score-val-light">8.34 / 10</span>
+              </div>
+            </div>
+
+            <!-- Card 02: Schooling Foundation (Education) -->
+            <div class="light-lab-card">
+              <div class="card-top-row">
+                <span class="card-category-tag">EDUCATION // 2021–2023</span>
+                <span class="card-index-pill">02</span>
+              </div>
+              <h4 class="card-main-title">HIGHER SECONDARY &amp; SSLC</h4>
+              <div class="card-org-name">Seventh Day Adventist HSS, Puducherry</div>
+              <p class="card-body-text">
+                Completed Higher Secondary Certificate (HSC) in 2023 with <b>68.33%</b> (67% aggregate) and Secondary School Leaving Certificate (SSLC) in 2021 with distinction in mathematics and science.
+              </p>
+              <div class="card-footer-box badge-box-light">
+                <span class="cert-icon-light">🎓</span>
+                <span class="cert-name-light">HSC 2023 (68%) // SSLC 2021</span>
+              </div>
+            </div>
+
+            <!-- Card 03: VEL Technologies Internship (Experience 01) -->
+            <div class="light-lab-card">
+              <div class="card-top-row">
+                <span class="card-category-tag">EXPERIENCE // 21-DAY ONSITE</span>
+                <span class="card-index-pill">03</span>
+              </div>
+              <h4 class="card-main-title">IOT ARCHITECTURE &amp; DATA ACQUISITION</h4>
+              <div class="card-org-name">VEL Technologies Pvt. Ltd., Chennai</div>
+              <p class="card-body-text">
+                Completed an intensive 21-day on-site internship dedicated to IoT hardware architectures, sensor deployment, and edge data acquisition. Gained practical experience analyzing sensor signals, communication protocols (I2C, SPI, UART), and data transmission pipelines.
+              </p>
+              <div class="card-footer-box badge-box-light">
+                <span class="cert-icon-light">⚡</span>
+                <span class="cert-name-light">VEL TECHNOLOGIES // EMBEDDED IOT</span>
+              </div>
+            </div>
+
+            <!-- Card 04: Google / AICTE Internship (Experience 02) -->
+            <div class="light-lab-card">
+              <div class="card-top-row">
+                <span class="card-category-tag">EXPERIENCE // 10-WEEK VIRTUAL</span>
+                <span class="card-index-pill">04</span>
+              </div>
+              <h4 class="card-main-title">ANDROID APPLICATION DEVELOPMENT</h4>
+              <div class="card-org-name">EduSkills / Google for Developers &amp; AICTE</div>
+              <p class="card-body-text">
+                Completed a rigorous 10-week Android development program supported by Google for Developers and AICTE. Engineered functional mobile application prototypes utilizing Kotlin and XML layouts. Implemented activity lifecycles, navigation components, and Room local persistence.
+              </p>
+              <div class="card-footer-box badge-box-light">
+                <span class="cert-icon-light">📱</span>
+                <span class="cert-name-light">GOOGLE DEVELOPERS // EDUSKILLS</span>
+              </div>
+            </div>
+
+            <!-- Card 05: UiPath Automation (Certification & Training) -->
+            <div class="light-lab-card">
+              <div class="card-top-row">
+                <span class="card-category-tag">TRAINING // 2025</span>
+                <span class="card-index-pill">05</span>
+              </div>
+              <h4 class="card-main-title">AUTOMATION DEVELOPER ASSOCIATE</h4>
+              <div class="card-org-name">UiPath Academic Alliance / ICT Academy (v2024.10)</div>
+              <p class="card-body-text">
+                Certified training in Robotic Process Automation (RPA), enterprise workflow orchestration, automated optical data extraction, and orchestrator queue management for digital business operations.
+              </p>
+              <div class="card-footer-box badge-box-light">
+                <span class="cert-icon-light">🤖</span>
+                <span class="cert-name-light">UIPATH ACADEMIC ALLIANCE (2025)</span>
+              </div>
+            </div>
+
+            <!-- Card 06: Full-Stack Bootcamp (Certification & Training) -->
+            <div class="light-lab-card">
+              <div class="card-top-row">
+                <span class="card-category-tag">BOOTCAMP // 33 HOURS</span>
+                <span class="card-index-pill">06</span>
+              </div>
+              <h4 class="card-main-title">FULL-STACK WEB DEVELOPMENT</h4>
+              <div class="card-org-name">L&amp;T EduTech Bootcamp (8 Courses / 33 Hours)</div>
+              <p class="card-body-text">
+                Hands-on engineering across modern responsive web technologies, client-server communication, database integration, RESTful API consumption, and industry-standard architecture best practices.
+              </p>
+              <div class="card-footer-box badge-box-light">
+                <span class="cert-icon-light">🌐</span>
+                <span class="cert-name-light">L&amp;T EDUTECH VERIFIED (2025)</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="light-container">
+
+        <!-- 10. CAREER INTERESTS & TARGET ROLES -->
+        <div class="light-hero-text">
+          <div class="light-tag">[ OPEN TO FULL-TIME OPPORTUNITIES // 2026 ]</div>
+          <h2 class="light-title">
+            CAREER OBJECTIVES &amp; <span class="text-coral">TARGET ROLES</span>
+          </h2>
+          <p class="light-desc">
+            Information Technology undergraduate with a CGPA of <b>8.34 / 10.0</b>. Actively seeking junior engineering and specialist roles where I can architect robust database layers, implement clean APIs, and build reliable software platforms.
+          </p>
+
+          <div class="target-roles-grid">
+            <div class="role-pill">
+              <span class="role-icon">⚡</span>
+              <span class="role-name">Junior Software Developer</span>
+            </div>
+            <div class="role-pill">
+              <span class="role-icon">💾</span>
+              <span class="role-name">SQL Developer</span>
+            </div>
+            <div class="role-pill">
+              <span class="role-icon">🛠️</span>
+              <span class="role-name">Database Support Engineer</span>
+            </div>
+            <div class="role-pill">
+              <span class="role-icon">🌐</span>
+              <span class="role-name">Application Support Engineer</span>
+            </div>
+            <div class="role-pill">
+              <span class="role-icon">⚙️</span>
+              <span class="role-name">Junior Backend Developer</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. TECHNICAL SKILLS CATEGORIZED MATRIX (No fake percentages) -->
+        <div class="light-matrix-wrapper" id="skills">
+          <div class="light-section-badge">[ 05 // TECHNICAL SKILLS &amp; PROFICIENCIES ]</div>
+          <h3 class="light-matrix-title">CATEGORIZED TECHNICAL PROFICIENCIES</h3>
+          <p class="matrix-subtitle">Practical engineering capabilities developed through coursework, industrial internships, and end-to-end projects.</p>
+
+          <div class="skills-categorized-grid">
+            <div class="skill-category-card">
+              <div class="category-header">
+                <span class="cat-icon">💻</span>
+                <h4 class="cat-title">PROGRAMMING</h4>
+              </div>
+              <div class="skill-items-list">
+                <span class="skill-item-tag">Python</span>
+                <span class="skill-item-tag">SQL</span>
+                <span class="skill-item-tag">JavaScript</span>
+                <span class="skill-item-tag">Kotlin</span>
+                <span class="skill-item-tag">Embedded C / C++</span>
+              </div>
+            </div>
+
+            <div class="skill-category-card">
+              <div class="category-header">
+                <span class="cat-icon">🗄️</span>
+                <h4 class="cat-title">DATABASES</h4>
+              </div>
+              <div class="skill-items-list">
+                <span class="skill-item-tag">MySQL</span>
+                <span class="skill-item-tag">MongoDB</span>
+                <span class="skill-item-tag">Supabase</span>
+                <span class="skill-item-tag">Relational Modeling</span>
+                <span class="skill-item-tag">Index &amp; Query Optimization</span>
+              </div>
+            </div>
+
+            <div class="skill-category-card">
+              <div class="category-header">
+                <span class="cat-icon">🌐</span>
+                <h4 class="cat-title">WEB DEVELOPMENT</h4>
+              </div>
+              <div class="skill-items-list">
+                <span class="skill-item-tag">HTML5</span>
+                <span class="skill-item-tag">CSS3</span>
+                <span class="skill-item-tag">JavaScript (ES6+)</span>
+                <span class="skill-item-tag">REST API Integration</span>
+                <span class="skill-item-tag">Responsive UI/UX</span>
+              </div>
+            </div>
+
+            <div class="skill-category-card">
+              <div class="category-header">
+                <span class="cat-icon">🛠️</span>
+                <h4 class="cat-title">TOOLS &amp; PLATFORMS</h4>
+              </div>
+              <div class="skill-items-list">
+                <span class="skill-item-tag">Git</span>
+                <span class="skill-item-tag">GitHub</span>
+                <span class="skill-item-tag">VS Code</span>
+                <span class="skill-item-tag">Android Studio</span>
+                <span class="skill-item-tag">Postman / cURL</span>
+              </div>
+            </div>
+
+            <div class="skill-category-card">
+              <div class="category-header">
+                <span class="cat-icon">📡</span>
+                <h4 class="cat-title">OTHER TECHNOLOGIES</h4>
+              </div>
+              <div class="skill-items-list">
+                <span class="skill-item-tag">IoT Systems &amp; Hardware</span>
+                <span class="skill-item-tag">RC522 RFID</span>
+                <span class="skill-item-tag">Google Apps Script</span>
+                <span class="skill-item-tag">UiPath RPA</span>
+                <span class="skill-item-tag">Android Mobile Dev</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. FINAL CONTACT SECTION & FOOTER -->
+        <div class="light-footer-cta" id="contact">
+          <div class="cta-banner">
+            <span class="cta-badge">[ GET IN TOUCH // AVAILABLE FOR HIRE ]</span>
+            <h3 class="cta-heading">LET'S BUILD SOMETHING MEANINGFUL.</h3>
+            <p class="cta-sub">
+              Open to Junior Software Developer, SQL Developer, and Database Support roles. Feel free to reach out via email, direct phone call, or download my resume.
+            </p>
+            <div class="cta-actions">
+              <button class="light-action-btn pill magnetic" id="copyEmailBtn" aria-label="Copy email address to clipboard">
+                <span class="btn-text">COPY EMAIL [ GUHAN6575@GMAIL.COM ]</span>
+                <span class="btn-toast" id="copyToast">COPIED TO CLIPBOARD!</span>
+              </button>
+              <a href="Guhan_N_Resume.pdf" download="Guhan_N_Resume.pdf" class="light-action-btn outline pill magnetic" title="Download Guhan N Resume PDF">
+                DOWNLOAD RESUME PDF 📄
+              </a>
+              <a href="tel:+917010572799" class="light-action-btn outline pill magnetic" title="Call or WhatsApp Guhan N">
+                CALL: +91 70105 72799 ↗
+              </a>
+              <a href="mailto:guhan6575@gmail.com" class="light-action-btn outline pill magnetic" title="Send direct email to Guhan N">
+                SEND EMAIL ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="light-social-bar">
+            <div class="social-links">
+              <a href="https://github.com/Guhan-N" target="_blank" rel="noreferrer" class="social-link magnetic">GITHUB ↗</a>
+              <a href="https://linkedin.com/in/Guhan-n" target="_blank" rel="noreferrer" class="social-link magnetic">LINKEDIN ↗</a>
+              <a href="mailto:guhan6575@gmail.com" class="social-link magnetic">MAIL ↗</a>
+              <a href="tel:+917010572799" class="social-link magnetic">PHONE: +91 70105 72799</a>
+            </div>
+            <div class="light-meta-info">
+              <span>GUHAN N © 2026 // PUDUCHERRY, INDIA</span>
+              <span id="localTime">UTC TIME: 00:00:00</span>
+              <button class="light-back-to-top magnetic" id="backToTopBtn">↑ BACK TO TOP</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>
