@@ -73,7 +73,6 @@ Then open `http://localhost:3000` in your browser.
 ## 📬 Contact & Socials
 
 - **Email**: [guhan6575@gmail.com](mailto:guhan6575@gmail.com)
-- **Phone**: [+91 70105 72799](tel:+917010572799)
 - **LinkedIn**: [linkedin.com/in/Guhan-n](https://linkedin.com/in/Guhan-n)
 - **GitHub**: [github.com/Guhan-N](https://github.com/Guhan-N)
 - **Location**: Puducherry, India
