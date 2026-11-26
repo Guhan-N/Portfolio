@@ -580,14 +580,14 @@ body.light-theme .noise-overlay {
   position: sticky;
   top: 90px;
   min-height: 620px;
-  background: rgba(16, 16, 22, 0.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(14, 14, 20, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 18px;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.75);
   overflow: hidden;
   transform-origin: center top;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 
 .card-inner {
@@ -1711,6 +1711,7 @@ body.light-theme .noise-overlay {
   margin: 0;
   overflow: hidden;
   background: var(--bg);
+  transition: background-color 0.4s ease;
 }
 
 body.light-theme .portal-section {

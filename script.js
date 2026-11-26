@@ -656,7 +656,7 @@
   const stackCards = document.querySelectorAll('.stack-card');
   stackCards.forEach((card, index) => {
     if (index < stackCards.length - 1) {
-      // Scale down and dim when the next card scrolls in
+      // Scale down and dim when the next card scrolls in (GPU-composited only)
       gsap.to(card, {
         scrollTrigger: {
           trigger: stackCards[index + 1],
@@ -666,7 +666,6 @@
         },
         scale: 0.94 - index * 0.015,
         opacity: 0.45,
-        filter: 'blur(2px)',
         transformOrigin: 'top center',
         ease: 'none',
       });
@@ -674,7 +673,7 @@
   });
 
   // =========================================================================
-  // 6. THE EXPANDING WHITE PORTAL TRANSITION (Quick, Punchy & Seamless)
+  // 6. THE EXPANDING WHITE PORTAL TRANSITION (Smooth & Balanced Pace)
   // =========================================================================
   const portalSection = document.getElementById('portalSection');
   const portalCard = document.getElementById('portalCard');
@@ -684,17 +683,17 @@
       scrollTrigger: {
         trigger: portalSection,
         start: 'top top',
-        end: '+=75%',
+        end: '+=150%',
         pin: true,
-        scrub: 0.6,
+        scrub: 1.0,
         onUpdate: (self) => {
-          setLightMode(self.progress >= 0.60);
+          setLightMode(self.progress >= 0.50);
         },
         onLeave: () => {
           setLightMode(true);
         },
         onEnterBack: (self) => {
-          setLightMode(self.progress >= 0.60);
+          setLightMode(self.progress >= 0.50);
         },
         onLeaveBack: () => {
           setLightMode(false);
@@ -702,46 +701,46 @@
       },
     });
 
-    // 1. Expand white card to 100vw x 100vh smoothly (0.0 to 0.65)
+    // 1. Expand white card to 100vw x 100vh smoothly (0.0 to 0.55)
     portalTl.to(portalCard, {
       width: '100vw',
       height: '100vh',
       borderRadius: '0px',
       boxShadow: 'none',
       ease: 'power2.inOut',
-      duration: 0.65,
+      duration: 0.55,
     }, 0);
 
-    // 2. Fade out preview content early so white card expands cleanly
+    // 2. Fade out preview content cleanly as expansion begins (0.0 to 0.22)
     portalTl.to('.portal-preview-content', {
       opacity: 0,
-      scale: 0.90,
-      ease: 'power1.in',
-      duration: 0.25,
+      scale: 0.92,
+      ease: 'power1.inOut',
+      duration: 0.22,
     }, 0);
 
-    // 3. Reveal bold editorial transition typography inside the white canvas (0.45 to 0.80)
-    portalTl.fromTo('.portal-white-content', 
+    // 3. Reveal editorial transition typography inside the white canvas (0.38 to 0.72)
+    portalTl.fromTo('.portal-white-content',
       { opacity: 0, y: 35, scale: 0.96 },
-      { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 0.35 },
-      0.45
+      { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 0.34 },
+      0.38
     );
 
-    // 4. Smoothly drift up transition typography as we flow into Academics & Experience (0.85 to 1.0)
+    // 4. Gently drift up transition typography before flowing into Academics & Experience (0.85 to 1.0)
     portalTl.to('.portal-white-content', {
       y: -25,
       opacity: 0.85,
-      ease: 'power1.in',
+      ease: 'power1.inOut',
       duration: 0.15,
     }, 0.85);
 
-    // 5. Hold solid white card throughout remainder of pin
+    // 5. Hold solid white card throughout remainder of pin (0.55 to 1.0)
     portalTl.to(portalCard, {
       width: '100vw',
       height: '100vh',
       borderRadius: '0px',
-      duration: 0.35,
-    }, 0.65);
+      duration: 0.45,
+    }, 0.55);
   }
 
   // =========================================================================
